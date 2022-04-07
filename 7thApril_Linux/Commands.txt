@@ -1,0 +1,15 @@
+Vim file1.txt
+There are 2 modes
+Command mode
+Insert mode, press i
+Press esc to go to command mode
+Save & quit
+:wq
+W > write
+Q > quit
+
+Commands 
+3rd mode
+Replace mode
+
+
