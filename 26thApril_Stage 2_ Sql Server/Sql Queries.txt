@@ -1,0 +1,90 @@
+create database practdb
+use practdb
+
+ create table Employee (id int ,
+ name varchar(20),
+ dept varchar(20),
+ salary int,
+ dob datetime)
+
+ insert into Employee values(1,'Ajay','sdssdsddsdsdsdds', 0,'12/23/2024')
+
+ select * from Employee
+
+
+ -- Add a column / Remove column / Modify column , we shuld use alter table  command
+ alter table Employee add manager varchar(20)
+
+ select * from Employee	
+
+ -- Remove Manager column
+ alter table Employee drop column manager
+
+ -- Change width of name column
+ alter table employee alter column name varchar(30)
+
+ -- How do rename table
+ sp_rename 'Employee', 'Emp'
+
+select * from Emp
+
+-- how do you rename column
+sp_rename 'Emp.dob' ,'dateofBirth' ,'column'
+
+
+
+ -- constraints 
+ -- are restrictions that we put that what values are allowed in the columns
+
+ -- primary key
+ -- unique
+ -- not null
+ -- check
+ -- default
+ -- foreign key
+
+ -- There are 2 different ways to put constraint
+ -- 1. While creating table
+ -- 2. After table is created , we can add constraints then also
+
+ --ddl 
+ drop table  Emp
+
+ create table Employee (id int primary key,
+ name varchar(20) not null check(len(name) >= 10) , 
+dept varchar(20) not null check(dept IN ('HR', 'Sales', 'Accts')) default 'HR',
+salary int not null check (salary between 20000 AND 45000),
+dob datetime check(dob between '01/01/1995' AND '01/01/2000'),
+manager varchar(20) unique,
+address varchar(100) unique not null) 
+
+ insert into Employee values(1,'Ajay Kumar Sood','HR', 21000,'12/23/1998' ,'Ajay' , 'N89, Delhi')
+
+ insert into Employee values(2,'Lalit Kumar','HR', 21000,'12/23/1998' ,'Deepak' , 'Z89, Delhi')
+
+ select * from Employee
+
+
+ insert into Employee(id, name , salary, address, manager) 
+ values(4,'Kiran Bala',23000, 'V/89, Calcutta','Pooran')
+
+ -- Name the constraints
+ create table Emp (id int constraint pk primary key,
+ name varchar(20) constraint nn not null constraint namelength check(len(name)>=10),
+ dept varchar(20) constraint deptrange check (dept in ('HR','Sales')),
+ salary int constraint salarycon check(salary > 12000))
+
+ -- remove constraint from table
+
+
+ alter table emp drop constraint namelength
+
+
+
+
+
+
+
+
+
+
