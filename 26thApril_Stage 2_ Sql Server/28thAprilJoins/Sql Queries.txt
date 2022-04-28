@@ -1,0 +1,158 @@
+
+ create table Trainer (trainerid int, trainername varchar(20), experience
+  int , qualification varchar(20)) 
+
+alter table Trainer alter column trainerid int not null
+
+ alter table Trainer add constraint trainerpk primary key (trainerid)
+
+  
+ create table batch (batchid int primary key , batchname varchar(20), 
+trainerid int constraint fk foreign key references trainer(trainerid) 
+
+insert into trainer values(10,'Ajay', 12, 'BTech')
+insert into trainer values(11,'Deepak', 20, 'MTech')
+insert into trainer values(12, 'Sagar', 20, 'MTech')
+insert into trainer values(13,'Lalit', 20, 'MTech')
+
+select * from trainer
+
+
+
+
+insert into batch values(1,'B001',10)
+insert into batch values(2,'B002',10)
+insert into batch values(3,'B003',11)
+insert into batch values(4,'B002',11)
+insert into batch values(5,'B003',10)
+insert into batch values(6,'B004',null)
+insert into batch values(7,'B005',null)
+insert into batch values(8,'B006',null)
+
+
+select * from trainer
+select * from batch
+
+
+-- Joins , are used to get data from more than 1 table
+
+-- inner join    (gives you matching records)
+-- outer join    (gives you matching as well as non matching records)
+   -- left outer join
+   -- right outer join
+   -- full outer join
+-- cross join   (gives you product of 2 tables)
+-- self join    (is used to join a table to itself)
+
+-- For inner , outer joins, there has to be a common column
+
+-- Give batch names  & trainers who are handling them
+
+ select trainername , batchname from Trainer join batch
+ on trainer.trainerid = batch.trainerid
+
+ select trainer.trainername , batch.batchname from Trainer join batch
+ on trainer.trainerid = batch.trainerid
+
+ select a.trainername , b.batchname from Trainer a join batch b
+ on a.trainerid = b.trainerid
+ 
+
+ -- outer join
+
+select a.trainername , b.batchname from Trainer a left outer join batch b
+ on a.trainerid = b.trainerid
+
+ select a.trainername , b.batchname from Trainer a right outer join batch b
+ on a.trainerid = b.trainerid
+ 
+ select a.trainername , b.batchname from Trainer a full outer join batch b
+ on a.trainerid = b.trainerid
+
+ -- cross join
+ -- there is no need that tables shoud have common column
+
+ select a.* , b.*  from Trainer a cross join batch b
+
+ select a.trainerid, a.trainername , a.experience, b.batchid, b.batchname 
+ into newtb from Trainer a cross join batch b
+
+ select * into newt from Emp
+
+ -- self join
+  create table empl (id int primary key , name varchar(20), address varchar(20),
+ managerid int references empl(id))
+
+
+ insert into empl values (1,'Ajay','Delhi',null),
+ (2,'Deepak','Calcutta',6),
+ (3,'Vijay','NDelhi',8),
+ (4,'Pradeep','Delhi',1),
+ (5,'Om','Delhi',8),
+ (6,'Deepak Kumar','Bombay',2),
+ (7,'Pooja','NDelhi',6),
+ (8,'Gagan','Delhi',6) 
+
+
+ select * from empl
+
+ update empl set managerid = 1 where id = 1
+
+
+  -- give employee names & their manager names
+  select a.name As "Employee Name" , b.name as "Manager Name" from empl a join empl b 
+  on a.managerid = b.id 
+  
+
+
+
+
+
+
+   select * from student
+
+   insert into student(name , address, batch) values
+   ('Ravi', 'Delhi', 'B001'),
+    ('Tavi', 'O Delhi', 'B003'),
+	 ('Savi', 'N Delhi', 'B002'),
+	  ('Javi', 'Bombay', 'B002'), ('Kavi', 'Delhi', 'C#'),
+	   ('Meena', 'Delhi', 'B001')
+
+create view BatchB002 
+As 
+Select * from student where batch='B002'
+
+select * from BatchB002
+ 
+create view BatchB001
+As 
+Select name , address , batch  from student where batch='B001'
+
+select * from BatchB001
+
+-- Can we perform Insert , Delete , Update throu Views?
+-- Ans :  Yes
+
+-- We can run these queries, but it actually affects base  tables not views themselves
+-- Why? 
+-- Because views does not have any data 
+
+
+
+  
+
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
