@@ -1,0 +1,109 @@
+select * from student
+
+select * from BatchB002
+
+insert into BatchB002(name, address, batch)  values('Lalit', 'N Delhi', 'B002')
+
+delete from BatchB002 where rn=7
+
+insert into BatchB002(name, address, batch)  values('Lalit Kumar', 'N Delhi', 'B003')
+
+sp_helptext BatchB002 
+
+
+alter view BatchB002   
+As   
+Select * from student where batch='B002'
+with check option 
+
+
+Indexes
+
+select * from student where name ='Ajay' 
+
+create index I1 on student(name)
+
+
+create clustered index I2 on student(rn)
+
+
+Triggers
+
+-- SP , we have to call
+-- Triggers are special SP whic we do n ot call , they are invoked
+---automatically when user perform certian DML / DDL operations
+
+-- DML
+-- DDL
+
+-- DML Triggers are fired when we perform Insert / Update / Delete operation
+-- DDL Triggers are fired when we perform Create / Alter / Drop operation
+
+-- DML Triggers 
+-- after / for
+-- instead of
+
+
+
+-- DO not allow uses to insert record in student table
+create trigger InsertTrigger 
+on student
+for insert
+AS 
+
+Begin
+
+ print 'New record inserted'
+ End
+
+insert into student(name, address, batch)  values('Lalit', 'N Delhi', 'B002')
+
+
+create trigger InsertDeleteUpdateTrigger 
+on student
+for insert , delete , update
+AS 
+Begin
+rollback
+ print 'Table cant not be modified'
+ End
+
+insert into student(name, address, batch)  values('Lalit', 'N Delhi', 'B002')
+
+delete student
+
+select * from student
+
+
+-- ddl Trigger
+
+create trigger Trig1 
+on database
+for drop_table , alter_table
+As
+Begin
+  rollback
+  print ' Can not Drop or Modify table in this database'
+end
+
+drop table emp 
+   
+
+Exec sp_settriggerorder InsertDeleteUpdateTrigger, FIRST, 'INSERT'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
