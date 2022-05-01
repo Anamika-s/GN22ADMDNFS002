@@ -1,0 +1,69 @@
+CREATE TRIGGER tr_au_upd ON student
+AFTER UPDATE,INSERT,DELETE
+AS 
+PRINT 'TRIGGER OUTPUT' +  CONVERT(VARCHAR(5),@@ROWCOUNT)
++ 'ROW UPDATED'
+GO
+
+select * into stu from student
+
+delete from student
+select * from student
+Exec sp_settriggerorder tr_au_upd, FIRST, 'DELETE'
+
+
+
+create table product (productid int primary key identity ,
+name varchar(20), qty_stock int)
+
+create table orders (orderid int  primary key identity,
+productid int references product (productid),
+qtyOrdered int ,
+orderDate datetime) 
+
+
+insert into product(name , qty_stock) values
+('Mouse', 90),
+('Sacnner', 80),
+('Printer', 19)
+
+
+create trigger ordersT1 on orders 
+for insert 
+As
+Begin
+  declare @productid int
+  select @productid = inserted.productid from inserted
+  update product set qty_stock = qty_stock - inserted.qtyOrdered from inserted where 
+  product.productid = @productid
+End
+ 
+insert into orders (productid, qtyOrdered, orderDate)
+values (1, 20 , GetDate())
+ 
+ select * from product
+ select * from orders
+
+
+
+create table TransactionHistory (id int primary key identity,
+TransactionMessage varchar(100), TransactionDate DateTime)
+
+create trigger ProductTrigger on product
+for insert 
+as
+begin
+      insert into TransactionHistory(TransactionMessage , TransactionDate)
+	  values ('Insertion Performed' , GETDATE())
+end 
+
+insert into product(name , qty_stock) values
+('Monitor', 90)
+
+select * from TransactionHistory
+
+
+
+
+
+
