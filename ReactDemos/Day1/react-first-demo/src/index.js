@@ -4,10 +4,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+//React.createElement("h1", null , "Hello");
+// Using jsx
+// const e1 = <h1> Hello </h1>
+// const e2 = <h2 className="class1"> Hello from h2 </h2>
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+      {/* {e1}    {e2}  */}
+      {/* {10+20}  */}
+      <App />
   </React.StrictMode>
 );
 
