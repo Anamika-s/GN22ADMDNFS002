@@ -11,13 +11,38 @@ import DataForm from './DataForm';
 import UnControlledCom from './UnControlledCom'
 import App1 from './App1'
 import './App1.css'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import NavBar from './NavBar ';
 function App() {
   return (
     <div className="App">
-      {/* <First/>
+ 
+      <Router>
+        <NavBar/>
+        <Switch>
+       <Route path="/">
+         <App1/>
+      </Route>
+      <Route exact path="/student">
+        console.log("aaa");
+         <Student/>
+      </Route>
+      <Route path="/second">
+         <Second/>
+      </Route>
+      
+      
+      </Switch> 
+        {/* <First/>
       <Second/>
       <Third/>
-      <Fourth/> */}
+      <Fourth/>   */}
+     </Router> 
       {/* <ClassComp name="Ajay"/>
       <SecondClassComp/>
       <Add no1={2} no2={10}/>
@@ -30,7 +55,7 @@ function App() {
 {/* <DataForm/> */}
 {/* <UnControlledCom/> */}
 
-<App1/>
+{/* <App1/> */}
      </div>
   );
 }

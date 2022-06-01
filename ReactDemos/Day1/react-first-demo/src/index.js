@@ -3,17 +3,22 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
+import Map1 from './mapdemo1';
+import Mapdemo2 from './Mapdemo2';
 //React.createElement("h1", null , "Hello");
 // Using jsx
 // const e1 = <h1> Hello </h1>
 // const e2 = <h2 className="class1"> Hello from h2 </h2>
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const number= [2,3,4,5,6]
 root.render(
   <React.StrictMode>
       {/* {e1}    {e2}  */}
       {/* {10+20}  */}
       <App />
+      {/* <Map1 /> */}
+      {/* <Map1 number={number}/> */}
+      {/* <Mapdemo2/>  */}
   </React.StrictMode>
 );
 

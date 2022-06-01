@@ -1,0 +1,9 @@
+Map , Filter, Reduce in JS :
+https://www.freecodecamp.org/news/javascript-map-reduce-and-filter-explained-with-examples/
+
+
+Destructuring : : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
+
+
+
+
