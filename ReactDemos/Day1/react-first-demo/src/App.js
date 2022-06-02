@@ -18,6 +18,7 @@ import {
   Link
 } from "react-router-dom";
 import NavBar from './NavBar ';
+import FetchApiDemo from './FetchApiDemo';
 function App() {
   return (
     <div className="App">
@@ -26,7 +27,7 @@ function App() {
         <NavBar/>
         <Switch>
        <Route path="/">
-         <App1/>
+         <FetchApiDemo/>
       </Route>
       <Route exact path="/student">
         console.log("aaa");
